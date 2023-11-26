@@ -14,8 +14,12 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Components\PublicView\Layout\" />
-      <Folder Include="Components\UserView\Pages\" />
+      <_ContentIncludedByDefault Remove="Components\PublicView\Layout\MainLayout.razor" />
+      <_ContentIncludedByDefault Remove="Components\PublicView\Layout\NavMenu.razor" />
+      <_ContentIncludedByDefault Remove="Components\Pages\Counter.razor" />
+      <_ContentIncludedByDefault Remove="Components\Pages\Error.razor" />
+      <_ContentIncludedByDefault Remove="Components\Pages\Home.razor" />
+      <_ContentIncludedByDefault Remove="Components\Pages\Weather.razor" />
     </ItemGroup>
 
 </Project>
