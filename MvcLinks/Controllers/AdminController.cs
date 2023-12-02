@@ -5,17 +5,17 @@ using MvcLinks.Models;
 
 namespace MvcLinks.Controllers
 {
-    public class AdminController(ILogger<HomeController> logger, IUniqueIdService uniqueIdService) : Controller
+    public class AdminController(ILogger<HomeController> logger, IUniqueIdService _uniqueIdService) : Controller
     {
         private readonly ILogger<HomeController> _logger = logger;
-        private readonly IUniqueIdService _uniqueIdService = uniqueIdService;
+
         // GET: Admin
-        public ActionResult Index()
+        public async Task<IActionResult> Index()
         {
             return View();
         } 
 
-        public IActionResult AddLink(LinkPayload? payload)
+        public async Task<IActionResult> AddLink(LinkPayload? payload)
         {
             if (!string.IsNullOrWhiteSpace(payload.Id))
             {
@@ -30,13 +30,29 @@ namespace MvcLinks.Controllers
             }
             return PartialView();
         }
-        public IActionResult AddLinkPost(LinkPayload payload)
+        public async Task<IActionResult> AddLinkPost(LinkPayload payload)
         {
             ViewData["payload"] = payload;
             return PartialView();
         }
+        public async Task<IActionResult> Upload(LinkPayload payload)
+        {
+            // TODO: Upload file
+            // TODO: Save file path to database
+            // TODO: Return file path to view
+            // TODO: Check for existing file
+            ViewData["payload"] = payload;
+            return PartialView();
+        }
+
+        public async Task<IActionResult> UploadPost(LinkPayload payload)
+        {
+            
+            return Ok();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public async Task<IActionResult> Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }

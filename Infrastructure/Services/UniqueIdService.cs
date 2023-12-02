@@ -7,7 +7,8 @@ public class UniqueIdService : IUniqueIdService
     // Create a url id short generator
     public string Generator(int maxLength = 10)
     {
-        string allowedCharsURL = "abcdefghijklmnopqrstuvwxyz1234567890";
+        string allowedCharsURL = @"abcdefghijklmnopqrstuvwxyz1234567890/\=+*)(*&^%$#@!~`?><,.;:][{}|";
+        //string allowedCharsURL = "abcdefghijklmnopqrstuvwxyz1234567890";
         //$-_.+!*'(),
         //unwise in URI      = "{" | "}" | "|" | "\" | "^" | "[" | "]" | "`"
         //reserved in URI    = ";" | "/" | "?" | ":" | "@" | "&" | "=" | "+" | "$" | ","

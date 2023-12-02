@@ -1,0 +1,19 @@
+@model dynamic
+@model LinkPayload
+@{
+    var payload = (LinkPayload)ViewData["payload"]!;
+}
+
+<div data-uploadcontainer-id="@payload.Id">
+    <div>
+        <p>Add Thumbnail image for this link</p>
+    </div>
+    <div>
+        <div>
+            <button  hx-post="@Url.Action("UploadPost")" hx-target="[data-li-id='@payload.Id']" hx-swap="outerHTML" hx-include="[data-form-id='@payload.Id']" style="border-width: 0px; border-style: solid; box-sizing: border-box; background-color: transparent;outline: none;color: inherit;outline-offset: 2px;outline-width: 2px;border-radius: 2px;align-items: center;max-width: 100%;display: flex;
+                    outline: none;-webkit-appearance: button;text-transform: none;overflow: visible;margin: 0;cursor: pointer;background-image: none;-webkit-font-smoothing: antialiased;backface-visibility: hidden !important;">
+                <div></div>
+            </button>
+        </div>
+    </div>
+</div>
