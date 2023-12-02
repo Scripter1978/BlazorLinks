@@ -19,34 +19,5 @@ public class HomeController(ILogger<HomeController> logger, IUniqueIdService uni
     {
         return View();
     }
-    public IActionResult Links()
-    {
-        return View();
-    }
-
-    public IActionResult AddLink(LinkPayload? payload)
-    {
-        if (!string.IsNullOrWhiteSpace(payload.Id))
-        {
-            ViewData["payload"] = payload;
-        }
-        else
-        {
-            ViewData["payload"] = new LinkPayload
-            {
-                Id = _uniqueIdService.Generator()
-            };
-        }
-        return PartialView();
-    }
-    public IActionResult AddLinkPost(LinkPayload payload)
-    {
-        ViewData["payload"] = payload;
-        return PartialView();
-    }
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-    }
+    
 }
