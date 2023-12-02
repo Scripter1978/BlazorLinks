@@ -1,10 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkApp", "LinkApp\LinkApp.csproj", "{23F80738-A187-4099-A96A-ACE29988785A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorLinks", "RazorLinks\RazorLinks.csproj", "{2BDF9C07-9BC6-4077-BDFA-BBEB8F86F301}"
-EndProject
+Microsoft Visual Studio Solution File, Format Version 12.00 
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcLinks", "MvcLinks\MvcLinks.csproj", "{38DFBC40-3F3A-450F-8F12-E18ABA9144D9}"
+EndProject 
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{FE87D8DA-4080-4D28-9060-233F9715A632}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +22,13 @@ Global
 		{38DFBC40-3F3A-450F-8F12-E18ABA9144D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38DFBC40-3F3A-450F-8F12-E18ABA9144D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38DFBC40-3F3A-450F-8F12-E18ABA9144D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{683FC5E2-5C12-4057-BE65-F965A3AF8E4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{683FC5E2-5C12-4057-BE65-F965A3AF8E4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{683FC5E2-5C12-4057-BE65-F965A3AF8E4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{683FC5E2-5C12-4057-BE65-F965A3AF8E4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE87D8DA-4080-4D28-9060-233F9715A632}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE87D8DA-4080-4D28-9060-233F9715A632}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE87D8DA-4080-4D28-9060-233F9715A632}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE87D8DA-4080-4D28-9060-233F9715A632}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
