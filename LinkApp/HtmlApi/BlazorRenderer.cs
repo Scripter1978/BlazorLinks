@@ -20,8 +20,11 @@ internal class BlazorRenderer(HtmlRenderer htmlRenderer)
         // static HTML renderer and return as a string
         return htmlRenderer.Dispatcher.InvokeAsync(async () =>
         {
-            HtmlRootComponent output = await htmlRenderer.RenderComponentAsync<T>(parameters);
-            return output.ToHtmlString();
+            var output = htmlRenderer.BeginRenderingComponent<T>(parameters);
+            var htmlWriter = new StringWriter();
+            await output.QuiescenceTask;
+            output.WriteHtmlTo(htmlWriter);
+            return htmlWriter.ToString();
         });
     }
 }
