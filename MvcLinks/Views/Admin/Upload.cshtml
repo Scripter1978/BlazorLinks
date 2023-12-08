@@ -1,19 +1,23 @@
-@model dynamic
 @model LinkPayload
 @{
     var payload = (LinkPayload)ViewData["payload"]!;
 }
-
-<div data-uploadcontainer-id="@payload.Id">
-    <div>
-        <p>Add Thumbnail image for this link</p>
-    </div>
-    <div>
-        <div>
-            <button  hx-post="@Url.Action("UploadPost")" hx-target="[data-li-id='@payload.Id']" hx-swap="outerHTML" hx-include="[data-form-id='@payload.Id']" style="border-width: 0px; border-style: solid; box-sizing: border-box; background-color: transparent;outline: none;color: inherit;outline-offset: 2px;outline-width: 2px;border-radius: 2px;align-items: center;max-width: 100%;display: flex;
-                    outline: none;-webkit-appearance: button;text-transform: none;overflow: visible;margin: 0;cursor: pointer;background-image: none;-webkit-font-smoothing: antialiased;backface-visibility: hidden !important;">
-                <div></div>
-            </button>
+<div class="modal-dialog modal-dialog-centered" data-uploadcontainer-id="@payload.Id">
+    <div class="modal-content">
+        <div class="modal-body">
+            <p>Add Thumbnail image for this link</p>
+            <form id='form' hx-encoding='multipart/form-data' hx-post='@Url.Action("UploadPost")'>
+                    <input type='file' name='file' accept=".jpg, .jpeg, .png">
+                    <button>
+                        Upload
+                    </button>
+                    <progress id='progress' value='0' max='100'></progress>
+                </form>
+                <script>
+                    htmx.on('#form', 'htmx:xhr:progress', function(evt) {
+                      htmx.find('#progress').setAttribute('value', evt.detail.loaded/evt.detail.total * 100)
+                    });
+                </script>
         </div>
     </div>
 </div>

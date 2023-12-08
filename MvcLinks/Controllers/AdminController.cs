@@ -45,16 +45,39 @@ namespace MvcLinks.Controllers
             return PartialView();
         }
 
-        public async Task<IActionResult> UploadPost(LinkPayload payload)
+        
+        public async Task<IActionResult> UploadPost(IFormFile file, LinkPayload payload)
         {
-            
-            return Ok();
+            var test = file;
+            ViewData["payload"] = payload; 
+            ViewData["UploadStatus"] = "File Uploaded Successfully";
+            UploadFile uploadFile = new UploadFile()
+            {
+                id = _uniqueIdService.Generator(),
+                name = file.Name,
+                path = file.FileName
+            };
+            ViewData["UploadFile"] = uploadFile;
+            return PartialView(uploadFile);
         }
 
+        [HttpPatch]
+        public async Task<IActionResult> EnableLink(EnableDisable status)
+        {
+            if (string.IsNullOrWhiteSpace(status.Enable))
+            {
+                // TODO: Disabled
+            }
+            return PartialView();
+        } 
+        
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public async Task<IActionResult> Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        
+        
     }
 }

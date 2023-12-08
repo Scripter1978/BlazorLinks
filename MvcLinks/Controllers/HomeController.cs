@@ -1,7 +1,5 @@
-using System.Diagnostics;
 using Infrastructure.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using MvcLinks.Models;
 
 namespace MvcLinks.Controllers;
 

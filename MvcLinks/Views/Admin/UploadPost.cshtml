@@ -1,0 +1,14 @@
+
+@{
+    var payload = (LinkPayload)ViewData["payload"]!;
+    var uploadStatus = ViewData["UploadStatus"]!;
+    var uploadFile = (UploadFile)ViewData["UploadFile"]!;
+}
+<br/>
+@Html.Raw(uploadFile.id)
+<br/>
+<br/>
+<br/>
+@Html.Raw(uploadFile.path)
+<br/>
+@Html.Raw(uploadStatus);

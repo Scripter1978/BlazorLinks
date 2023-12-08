@@ -1,0 +1,88 @@
+@model MvcLinks.Models.ProfileData
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_PublicLayout";
+
+}
+<div class="root-wrapper">
+    <div class="center-container">
+        <div id="UserName" class="center-username">
+            <p>@Model.UserName</p>
+        </div>
+        <div id="ProfileImage" >
+            <img src="@Model.ProfileImagePath" style="border-radius: 50%; width: 96px;"/>
+        </div>
+        <div id="UserBio">
+            <p style="inline-height: 1.5;font-weight: 500;">@Model.Bio</p>
+        </div>
+        @foreach (var link in Model.LinkItems)
+        {
+            <div id="Link_@link.Id">
+                <div class="center-items" id="LinkTitle_@link.Id">
+                    <p class="center-items">@link.Text</p>
+                </div>
+                <div class="center-items" id="LinkUrl_@link.Id">
+                    <p class="center-items">@link.Url</p>
+                </div>
+                <div class="center-items" id="LinkDescription_@link.Id">
+                    <p class="center-items">@link.Description</p>
+                </div>
+                <div class="center-items" id="LinkDescription_@link.Id">
+                    <p class="center-items">@link.CssClass</p>
+                </div>
+            </div>
+        }
+        <div id="UserLinks"></div>
+    </div>
+</div>
+
+
+@section head
+{
+    <meta name="description" content="@Model.Bio"/>
+    <meta property="og:title" content="@Model.UserName | Twitter | Linktree"/>
+    <meta property="og:description" content="@Model.Bio"/>
+    <meta property="og:url" content="https://linktr.ee/@Model.UserName"/>
+    <meta property="og:image" content="https://linktr.ee/og/image/@Model.JpgImageName"/>
+    <meta property="og:image:secure_url" content="https://linktr.ee/og/image/@Model.JpgImageName"/>
+    <meta property="og:updated_time" content="1701575454000"/>
+    <meta property="profile:username" content="@Model.UserName"/>
+    <meta name="twitter:title" content="@Model.UserName | Twitter | Linktree"/>
+    <meta name="twitter:description" content="@Model.Bio"/>
+    <meta name="twitter:image" content="https://linktr.ee/og/image/@Model.JpgImageName"/>
+    <meta property="snapchat:sticker" content="https://linktr.ee/sticker/@Model.PngImageName"/>
+    <link rel="canonical" href="https://linktr.ee/@Model.UserName"/>
+
+    <style>
+        body {
+            background-image: url('img/december-10-fun-in-the-snow-19-nocal-1920x1080.jpg');
+        }
+        .center-container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .center-username{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 10vh;
+            
+        }
+        
+        .center-items{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 5vh;
+            height: 5vh;
+            padding: .5em;
+        }
+    </style>
+    <title>@Model.UserName</title>
+}
