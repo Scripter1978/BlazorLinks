@@ -1,15 +1,31 @@
 using Core.Enums;
 using Infrastructure.Services.Interfaces;
+using Infrastructure.Services.Public;
 using Microsoft.AspNetCore.Mvc;
 using MvcLinks.Models;
 
 namespace MvcLinks.Controllers;
 
-public class PublicController(ILogger<HomeController> logger, IUniqueIdService _uniqueIdService) : Controller
+public class PublicController(ILogger<HomeController> logger, IUniqueIdService _uniqueIdService, IPublicService publicService) : Controller
 {
     // GET
-    public async Task<IActionResult> Index()
+    [Route("/{id?}")]
+    public async Task<IActionResult> Index(string id)
     {
+        if (string.IsNullOrEmpty(id))
+        {
+            return NotFound();
+        }
+        if(id[..1] == "@")
+        {
+            id = id[1..];
+        }
+        var bio = await publicService.GetBio(id);
+        if(bio is null)
+        {
+            return NotFound();
+        }
+        
         var profileDate = new ProfileData
         {
             Bio = "My bio",

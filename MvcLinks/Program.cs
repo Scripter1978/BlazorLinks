@@ -1,11 +1,17 @@
+using Core.Context;
 using Htmx.TagHelpers;
 using Infrastructure.Services;
 using Infrastructure.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContextFactory<LinksDbContext>(
+    options =>
+        options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Test"));
+
 builder.Services.AddScoped<IUniqueIdService, UniqueIdService>();
 var app = builder.Build();
 

@@ -15,6 +15,12 @@ public enum UniqueIdType
     [Display(Name = "cssclass")]
     CssClass,
     [Display(Name = "cssclassname")]
-    CssClassName
+    CssClassName,
+    [Display(Name = "content")]
+    Content,
+    [Display(Name = "bio")]
+    Bio,
+    [Display(Name = "socialmedia")]
+    SocialMedia,
     
 }
