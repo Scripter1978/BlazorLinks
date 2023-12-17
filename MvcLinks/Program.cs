@@ -1,7 +1,9 @@
 using Core.Context;
+using Core.Repositories;
 using Htmx.TagHelpers;
 using Infrastructure.Services;
 using Infrastructure.Services.Interfaces;
+using Infrastructure.Services.Public;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +14,9 @@ builder.Services.AddDbContextFactory<LinksDbContext>(
     options =>
         options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Test"));
 
+builder.Services.AddScoped<IPublicRepository, PublicRepository>();
 builder.Services.AddScoped<IUniqueIdService, UniqueIdService>();
+builder.Services.AddScoped<IPublicService, PublicService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -30,8 +34,12 @@ app.UseRouting();
 
 app.UseAuthorization();
 app.MapHtmxAntiforgeryScript();
+
+app.MapControllerRoute( 
+    name: "public",
+    pattern: "{controller=Public}/{action=Index}/{id?}");
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action}/");
 
 app.Run();
