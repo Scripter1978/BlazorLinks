@@ -35,10 +35,10 @@ public class ButtonLinkConfiguration : IEntityTypeConfiguration<ButtonLink>
             .HasColumnType("varchar(4000)")
             .HasMaxLength(4000)
             .IsUnicode(false);
-        builder.Property(x => x.CreateDate)   
+        builder.Property(x => x.CreateAt)   
             .HasDefaultValueSql("SYSDATETIMEOFFSET()")
             .IsRequired();
-        builder.Property(x => x.UpdateDate)  
+        builder.Property(x => x.UpdateAt)  
             .HasDefaultValueSql("SYSDATETIMEOFFSET()")
             .IsRequired();
         builder.Property(x => x.Status) 

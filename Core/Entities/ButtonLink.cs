@@ -7,8 +7,8 @@ public class ButtonLink
     public string Body { get; set; }
     public string Url { get; set; }
     public string Icon { get; set; }
-    public DateTimeOffset CreateDate { get; set; }
-    public DateTimeOffset UpdateDate { get; set; }
+    public DateTimeOffset CreateAt { get; set; }
+    public DateTimeOffset UpdateAt { get; set; }
     public int ButtonLinkType { get; set; }
     public int Status { get; set; }
     

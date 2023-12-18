@@ -18,29 +18,29 @@ public class LinksDbContext : DbContext
             if (entry.Entity is Member member)
             {
                 member.MemberId = UniqueIdService.Generator(UniqueIdType.User);
-                member.CreateDate = DateTimeOffset.UtcNow;
-                member.UpdateDate = DateTimeOffset.UtcNow;
+                member.CreateAt = DateTimeOffset.UtcNow;
+                member.UpdateAt = DateTimeOffset.UtcNow;
                 member.Status = 1;
             }
             if (entry.Entity is Content content)
             {
                 content.ContentId = UniqueIdService.Generator(UniqueIdType.Content);
-                content.CreateDate = DateTimeOffset.UtcNow;
-                content.UpdateDate = DateTimeOffset.UtcNow;
+                content.CreateAt = DateTimeOffset.UtcNow;
+                content.UpdateAt = DateTimeOffset.UtcNow;
                 content.Status = 1;
             }
             if (entry.Entity is Bio bio)
             {
                 bio.BioId = UniqueIdService.Generator(UniqueIdType.Bio);
-                bio.CreateDate = DateTimeOffset.UtcNow;
-                bio.UpdateDate = DateTimeOffset.UtcNow;
+                bio.CreateAt = DateTimeOffset.UtcNow;
+                bio.UpdateAt = DateTimeOffset.UtcNow;
                 bio.Status = 1;
             }
             if (entry.Entity is SocialMedia socialMedia)
             {
                 socialMedia.SocialMediaId = UniqueIdService.Generator(UniqueIdType.SocialMedia);
-                socialMedia.CreateDate = DateTimeOffset.UtcNow;
-                socialMedia.UpdateDate = DateTimeOffset.UtcNow;
+                socialMedia.CreateAt = DateTimeOffset.UtcNow;
+                socialMedia.UpdateAt = DateTimeOffset.UtcNow;
                 socialMedia.Status = 1;
             }
         }
@@ -51,6 +51,9 @@ public class LinksDbContext : DbContext
     public DbSet<Content> Contents { get; set; }
     public DbSet<Bio> Bios { get; set; }
     public DbSet<SocialMedia> SocialMedias { get; set; }
+    
+    protected override void OnConfiguring(DbContextOptionsBuilder options)
+        => options.UseSqlite(@"Data Source=Database\app.db;");
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.HasDefaultSchema("links");

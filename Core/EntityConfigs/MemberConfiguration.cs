@@ -1,4 +1,6 @@
 using Core.Entities;
+using Core.Enums;
+using Core.Generators;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -33,10 +35,10 @@ public class MemberConfiguration : IEntityTypeConfiguration<Member>
             .HasColumnType("varchar(1000)")
             .HasMaxLength(1000);
 
-        builder.Property(x => x.CreateDate)
+        builder.Property(x => x.CreateAt)
             .HasDefaultValueSql("SYSDATETIMEOFFSET()")
             .IsRequired();
-        builder.Property(x => x.UpdateDate)
+        builder.Property(x => x.UpdateAt)
             .HasDefaultValueSql("SYSDATETIMEOFFSET()")
             .IsRequired();
         builder.Property(x => x.Status)
@@ -50,5 +52,16 @@ public class MemberConfiguration : IEntityTypeConfiguration<Member>
         builder.Property(x => x.IsDeleted) 
             .IsRequired()
             .HasColumnType("int");
+        builder.HasData(new Member
+        {
+            IsDeleted = 0,
+            LastName = "Griffin",
+            MemberId = UniqueIdService.Generator(UniqueIdType.User),
+            MemberType = (int)MemberType.Premium,
+            Status = (int)Status.Active,
+            FirstName = "Scott",
+            Email = "Scott.l.griffin@gmail.com" 
+        });
+
     }
 }

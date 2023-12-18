@@ -7,17 +7,23 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.37.0" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.0" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
     </ItemGroup>
 
     <ItemGroup>
       <Compile Remove="Context\LinksDbContextFactory.cs" />
       <Compile Remove="Context\ILinksDbContextFactory.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Database\" />
     </ItemGroup>
 
 </Project>

@@ -1,18 +1,24 @@
+using Azure.Identity;
 using Core.Context;
 using Core.Repositories;
 using Htmx.TagHelpers;
 using Infrastructure.Services;
 using Infrastructure.Services.Interfaces;
 using Infrastructure.Services.Public;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
 builder.Services.AddDbContextFactory<LinksDbContext>(
     options =>
-        options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Test"));
+        options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Scoped);
 
 builder.Services.AddScoped<IPublicRepository, PublicRepository>();
 builder.Services.AddScoped<IUniqueIdService, UniqueIdService>();
