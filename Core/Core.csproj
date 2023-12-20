@@ -21,11 +21,20 @@
     <ItemGroup>
       <Compile Remove="Context\LinksDbContextFactory.cs" />
       <Compile Remove="Context\ILinksDbContextFactory.cs" />
+      <Compile Remove="EntityConfigs\**" />
     </ItemGroup>
 
     <ItemGroup>
       <Folder Include="Database\" />
       <Folder Include="Migrations\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="EntityConfigs\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="EntityConfigs\**" />
     </ItemGroup>
 
 </Project>

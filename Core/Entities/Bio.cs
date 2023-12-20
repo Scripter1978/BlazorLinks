@@ -1,22 +1,25 @@
+using Postgrest.Attributes;
+
 namespace Core.Entities;
 
-public class Bio
+[Table("bio")]
+public class Bio : BaseModelAp
 {
     public Bio()
     {
         Contents = new List<Content>();
         SocialMedias = new List<SocialMedia>();
-    }
-    public string BioId { get; set; }
-    public string UserName { get; set; }
+    } 
+    [Column("title")]
     public string Title { get; set; }
+    [Column("description")]
     public string Description { get; set; }
+    [Column("image")]
     public string Image { get; set; }
+    [Column("url")]
     public string Url { get; set; }
-    public DateTimeOffset CreateAt { get; set; }
-    public DateTimeOffset UpdateAt { get; set; }
-    public int Status { get; set; }
+    [Column("url_text")]
+    public string UrlText { get; set; }
     public virtual ICollection<Content> Contents { get; set; } 
     public virtual ICollection<SocialMedia> SocialMedias { get; set; }
-    public int IsDeleted { get; set; }
 }

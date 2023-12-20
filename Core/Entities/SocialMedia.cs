@@ -1,14 +1,17 @@
+using Postgrest.Attributes;
+
 namespace Core.Entities;
 
-public class SocialMedia
+[Table("socialmedia")]
+public class SocialMedia : BaseModelAp
 {
-    public string SocialMediaId { get; set; }
-    public string UserName { get; set; }
+    
+    [Column("url")]
     public string Url { get; set; }
-    public string Icon { get; set; }
-    public DateTimeOffset CreateAt { get; set; }
-    public DateTimeOffset UpdateAt { get; set; }
+    [Column("icon")]
+    public string Icon { get; set; } 
+    [Column("social_media_type")]
     public int SocialMediaType { get; set; }
-    public int Status { get; set; }
-    public int IsDeleted { get; set; }
+    [Column("bio_id")]
+    public string BioId { get; set; } 
 }
