@@ -41,16 +41,15 @@ public class BioConfiguration : IEntityTypeConfiguration<Bio>
             .HasMaxLength(4000)
             .IsUnicode(false);
         builder.Property(x => x.CreateAt)   
-            .HasDefaultValueSql("SYSDATETIMEOFFSET()")
+            .HasDefaultValue(DateTimeOffset.UtcNow) 
             .IsRequired();
         builder.Property(x => x.UpdateAt)  
-            .HasDefaultValueSql("SYSDATETIMEOFFSET()")
+            .HasDefaultValue(DateTimeOffset.UtcNow) 
             .IsRequired();
         builder.Property(x => x.Status) 
             .IsRequired()
             .HasColumnType("int");
-        builder.Property(x => x.RowVersion)
-            .IsRowVersion();
+    
         builder.Property(x => x.IsDeleted) 
             .IsRequired()
             .HasColumnType("int");

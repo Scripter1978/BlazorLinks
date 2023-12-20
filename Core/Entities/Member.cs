@@ -15,6 +15,5 @@ public class Member
     public int Status { get; set; }
     public int MemberType { get; set; }
     public virtual ICollection<Bio> Bios { get; set; }
-    public byte[] RowVersion { get; set; }
     public int IsDeleted { get; set; }
 }

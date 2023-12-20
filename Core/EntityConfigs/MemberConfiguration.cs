@@ -36,10 +36,10 @@ public class MemberConfiguration : IEntityTypeConfiguration<Member>
             .HasMaxLength(1000);
 
         builder.Property(x => x.CreateAt)
-            .HasDefaultValueSql("SYSDATETIMEOFFSET()")
+            .HasDefaultValue(DateTimeOffset.UtcNow) 
             .IsRequired();
         builder.Property(x => x.UpdateAt)
-            .HasDefaultValueSql("SYSDATETIMEOFFSET()")
+            .HasDefaultValue(DateTimeOffset.UtcNow) 
             .IsRequired();
         builder.Property(x => x.Status)
             .IsRequired()
@@ -47,8 +47,7 @@ public class MemberConfiguration : IEntityTypeConfiguration<Member>
         builder.Property(x => x.MemberType)
             .IsRequired()
             .HasColumnType("int");
-        builder.Property(x => x.RowVersion)
-            .IsRowVersion();
+    
         builder.Property(x => x.IsDeleted) 
             .IsRequired()
             .HasColumnType("int");

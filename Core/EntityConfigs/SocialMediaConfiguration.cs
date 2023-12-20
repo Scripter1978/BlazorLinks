@@ -30,11 +30,11 @@ public class SocialMediaConfiguration : IEntityTypeConfiguration<SocialMedia>
             .HasColumnType("varchar(4000)")
             .HasMaxLength(4000)
             .IsUnicode(false);
-        builder.Property(x => x.CreateAt)  
-            .HasDefaultValueSql("SYSDATETIMEOFFSET()")
+        builder.Property(x => x.CreateAt)
+            .HasDefaultValue(DateTimeOffset.UtcNow) 
             .IsRequired();
-        builder.Property(x => x.UpdateAt) 
-            .HasDefaultValueSql("SYSDATETIMEOFFSET()")
+        builder.Property(x => x.UpdateAt)
+            .HasDefaultValue(DateTimeOffset.UtcNow) 
             .IsRequired();
         builder.Property(x => x.SocialMediaType) 
             .IsRequired()
@@ -42,8 +42,7 @@ public class SocialMediaConfiguration : IEntityTypeConfiguration<SocialMedia>
         builder.Property(x => x.Status) 
             .IsRequired()
             .HasColumnType("int");
-        builder.Property(x => x.RowVersion)
-            .IsRowVersion();
+    
         builder.Property(x => x.IsDeleted) 
             .IsRequired()
             .HasColumnType("int");

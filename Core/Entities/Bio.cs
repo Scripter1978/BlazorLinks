@@ -18,6 +18,5 @@ public class Bio
     public int Status { get; set; }
     public virtual ICollection<Content> Contents { get; set; } 
     public virtual ICollection<SocialMedia> SocialMedias { get; set; }
-    public byte[] RowVersion { get; set; }
     public int IsDeleted { get; set; }
 }

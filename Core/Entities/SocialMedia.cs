@@ -10,6 +10,5 @@ public class SocialMedia
     public DateTimeOffset UpdateAt { get; set; }
     public int SocialMediaType { get; set; }
     public int Status { get; set; }
-    public byte[] RowVersion { get; set; }
     public int IsDeleted { get; set; }
 }

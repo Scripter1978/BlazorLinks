@@ -12,6 +12,5 @@ public class ButtonLink
     public int ButtonLinkType { get; set; }
     public int Status { get; set; }
     
-    public byte[] RowVersion { get; set; }
     public int IsDeleted { get; set; }
 }
