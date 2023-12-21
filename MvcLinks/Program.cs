@@ -7,6 +7,7 @@ using Infrastructure.Services.Interfaces;
 using Infrastructure.Services.Public;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using Supabase;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -37,10 +38,8 @@ builder.Services.AddScoped<Supabase.Client>(
         {
             AutoRefreshToken = true,
             AutoConnectRealtime = true,
-            SessionHandler = new CustomSupabaseSessionHandler(
-                provider.GetRequiredService<ILocalStorageService>(),
-                provider.GetRequiredService<ILogger<CustomSupabaseSessionHandler>>()
-            )
+            SessionHandler = new DefaultSupabaseSessionHandler(),
+             
         }
     )
 );
