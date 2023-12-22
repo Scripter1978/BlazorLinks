@@ -20,4 +20,14 @@
       <PackageReference Include="supabase-csharp" Version="0.14.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="Services\Supa\StorageService.cs" />
+      <Compile Remove="Services\Public\IPublicService.cs" />
+      <Compile Remove="Services\Public\PublicService.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Services\Public\" />
+    </ItemGroup>
+
 </Project>

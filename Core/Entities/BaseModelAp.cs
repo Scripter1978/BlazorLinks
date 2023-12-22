@@ -16,5 +16,7 @@ public class BaseModelAp : BaseModel
     public int Status { get; set; } 
     [Column("user_id")]
     public string UserId { get; set; }
+    [Column("is_soft_delete")]
+    public bool IsDeleted { get; set; }
     
 }

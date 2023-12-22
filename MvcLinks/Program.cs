@@ -1,13 +1,6 @@
-using Azure.Identity;
-using Core.Context;
-using Core.Repositories;
 using Htmx.TagHelpers;
 using Infrastructure.Services;
 using Infrastructure.Services.Interfaces;
-using Infrastructure.Services.Public;
-using Microsoft.Data.Sqlite;
-using Microsoft.EntityFrameworkCore;
-using Supabase;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,18 +10,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 
-builder.Services.AddDbContextFactory<LinksDbContext>(
-    options =>
-        options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Scoped);
+// builder.Services.AddDbContextFactory<LinksDbContext>(
+//     options =>
+//         options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Scoped);
 
-builder.Services.AddScoped<IPublicRepository, PublicRepository>();
 builder.Services.AddScoped<IUniqueIdService, UniqueIdService>();
-builder.Services.AddScoped<IPublicService, PublicService>();
 
 
 // ---------- SUPABASE
-var url = "https://pylnesfgmytjegzzculn.supabase.co";
-var key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB5bG5lc2ZnbXl0amVnenpjdWxuIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjgyOTMwMzcsImV4cCI6MTk4Mzg2OTAzN30.kI29Q_qYWDH5SD6oi5NTwHG6Pxy1e1AUfR8s_ga45lE";
+var url = "https://yjhcoittdmimcaxtffer.supabase.co";
+var key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlqaGNvaXR0ZG1pbWNheHRmZmVyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDMwMjU4MTUsImV4cCI6MjAxODYwMTgxNX0.6zH8NNxUhDL_thuLK_xyHMzY6eHQfbiz54z_VohEgOs";
 
 builder.Services.AddScoped<Supabase.Client>(
     provider => new Supabase.Client(
@@ -37,9 +28,7 @@ builder.Services.AddScoped<Supabase.Client>(
         new Supabase.SupabaseOptions
         {
             AutoRefreshToken = true,
-            AutoConnectRealtime = true,
-            SessionHandler = new DefaultSupabaseSessionHandler(),
-             
+            AutoConnectRealtime = true
         }
     )
 );

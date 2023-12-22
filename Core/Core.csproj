@@ -22,19 +22,26 @@
       <Compile Remove="Context\LinksDbContextFactory.cs" />
       <Compile Remove="Context\ILinksDbContextFactory.cs" />
       <Compile Remove="EntityConfigs\**" />
+      <Compile Remove="Repositories\**" />
+      <Compile Remove="Context\LinksDbContext.cs" />
+      <Compile Remove="Migrations\**" />
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Context\" />
       <Folder Include="Database\" />
-      <Folder Include="Migrations\" />
     </ItemGroup>
 
     <ItemGroup>
       <EmbeddedResource Remove="EntityConfigs\**" />
+      <EmbeddedResource Remove="Repositories\**" />
+      <EmbeddedResource Remove="Migrations\**" />
     </ItemGroup>
 
     <ItemGroup>
       <None Remove="EntityConfigs\**" />
+      <None Remove="Repositories\**" />
+      <None Remove="Migrations\**" />
     </ItemGroup>
 
 </Project>

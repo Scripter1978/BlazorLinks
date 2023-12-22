@@ -1,8 +1,6 @@
-using System.Net;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Logging;
-using Supabase.Functions;
-
+using Core.Entities;
 
 namespace Infrastructure.Services.Supa;
 
@@ -31,16 +29,16 @@ public class DatabaseService
         // _dialogService = dialogService;
     }
 
-    public async Task<IReadOnlyList<TModel>> From<TModel>() where TModel : BaseModelApp, new()
+    public async Task<IReadOnlyList<TModel>> From<TModel>() where TModel : BaseModelAp, new()
 	{
 		var modeledResponse = await _client
 			.From<TModel>()
-			.Where(x => x.SoftDeleted == false)
+			.Where(x => x.IsDeleted == false)
 			.Get();
 		return modeledResponse.Models;
 	}
 
-	public async Task<List<TModel>> Delete<TModel>(TModel item) where TModel : BaseModelApp, new()
+	public async Task<List<TModel>> Delete<TModel>(TModel item) where TModel : BaseModelAp, new()
 	{
 		var modeledResponse = await _client
 			.From<TModel>()
@@ -48,41 +46,34 @@ public class DatabaseService
 		return modeledResponse.Models;
 	}
 
-	public async Task<List<TModel>?> Insert<TModel>(TModel item) where TModel : BaseModelApp, new()
+	public async Task<List<TModel>?> Insert<TModel>(TModel item) where TModel : BaseModelAp, new()
 	{
 		Postgrest.Responses.ModeledResponse<TModel> modeledResponse;
 		try
 		{
 			modeledResponse = await _client
 				.From<TModel>()
-				.Insert(item);			
-			
-			return modeledResponse.Models;
+				.Insert(item);
+			if (modeledResponse.ResponseMessage is { IsSuccessStatusCode: true })
+			{
+				return modeledResponse.Models;
+			}
+			//TODO need to add in how to handle unsuccessful http request. Thinking returning a tuple. 
 		}
-		catch (Client.RequestException ex)
+		catch (Exception ex)
 		{
-			if(ex.Response?.StatusCode == HttpStatusCode.Forbidden)
-				await _dialogService.ShowMessageBox(
-					"Warning",
-					"This database request was forbidden."
-				);
-			else		
-				await _dialogService.ShowMessageBox(
-					"Warning",
-					"This request was not completed because of some problem with the http request. \n "
-					+ex.Response?.RequestMessage
-				);
+			//TODO Add in how Ex is handled
 		}
 		
 		return null;		
 	}
 
-	public async Task<List<TModel>> SoftDelete<TModel>(TModel item) where TModel : BaseModelApp, new()
+	public async Task<List<TModel>> SoftDelete<TModel>(TModel item) where TModel : BaseModelAp, new()
     {
         var modeledResponse = await _client.Postgrest
 			.Table<TModel>()
-            .Set(x => x.SoftDeleted, true)
-            .Set(x => x.SoftDeletedAt, DateTime.Now)
+            .Set(x => x.IsDeleted, true)
+            .Set(x => x.UpdateAt, DateTime.Now)
             .Where(x => x.Id == item.Id)
             // .Filter(x => x.Id, Operator.Equals, item.Id)
             .Update();

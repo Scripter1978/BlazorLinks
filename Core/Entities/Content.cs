@@ -1,7 +1,7 @@
 using Postgrest.Attributes;
 
 namespace Core.Entities;
-[Table("bio")]
+[Table("content")]
 public class Content : BaseModelAp
 { 
     [Column("content_type")]
@@ -16,6 +16,4 @@ public class Content : BaseModelAp
     public string Icon { get; set; } 
     [Column("order")]
     public int Order { get; set; } 
-    [Column("is_soft_delete")]
-    public int IsDeleted { get; set; }
 }
