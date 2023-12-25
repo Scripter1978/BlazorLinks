@@ -22,12 +22,6 @@
 
     <ItemGroup>
       <Compile Remove="Services\Supa\StorageService.cs" />
-      <Compile Remove="Services\Public\IPublicService.cs" />
-      <Compile Remove="Services\Public\PublicService.cs" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Services\Public\" />
     </ItemGroup>
 
 </Project>

@@ -1,14 +1,14 @@
-using System.Threading;
-using System.Threading.Tasks;
-using Core.Entities;
-using Core.Repositories;
+ 
+using Core.Entities; 
 
 namespace Infrastructure.Services.Public;
 
-public class PublicService(IPublicRepository repository) : IPublicService
+public class PublicService(Supabase.Client client) : IPublicService
 {
-    public Task<Bio?> GetBio(string id, CancellationToken token = default)
+    public async Task<Bio?> GetBio(string id, CancellationToken token = default)
     {
-        return repository.GetBio(id, token);
+
+        var bios = await client.From<Bio>().Where(m => m.UserId == id).Get();
+        return bios.Models.FirstOrDefault();
     }
 }

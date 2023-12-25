@@ -1,6 +1,11 @@
+using Azure.Identity; 
 using Htmx.TagHelpers;
 using Infrastructure.Services;
 using Infrastructure.Services.Interfaces;
+using Infrastructure.Services.Public;
+using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
+using Supabase;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,12 +14,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-
+//
 // builder.Services.AddDbContextFactory<LinksDbContext>(
 //     options =>
 //         options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Scoped);
-
+//  
 builder.Services.AddScoped<IUniqueIdService, UniqueIdService>();
+builder.Services.AddScoped<IPublicService, PublicService>();
 
 
 // ---------- SUPABASE
