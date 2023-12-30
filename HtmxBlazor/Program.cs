@@ -1,3 +1,4 @@
+using Htmx.TagHelpers;
 using HtmxBlazor.Components;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,7 +21,7 @@ app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 app.UseAntiforgery();
-
+app.MapHtmxAntiforgeryScript();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 

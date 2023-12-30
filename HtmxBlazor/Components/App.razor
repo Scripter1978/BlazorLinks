@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Htmx.TagHelpers
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -9,6 +10,9 @@
     <link rel="stylesheet" href="app.css"/>
     <link rel="stylesheet" href="HtmxBlazor.styles.css"/>
     <link rel="icon" type="image/png" href="favicon.png"/>
+    <script src="https://unpkg.com/htmx.org@@1.9.9" defer></script>
+    <script src="https://unpkg.com/hyperscript.org@0.9.12" defer></script>
+    <script src="@HtmxAntiforgeryScriptEndpoints.Path" defer></script>
     <HeadOutlet/>
 </head>
 

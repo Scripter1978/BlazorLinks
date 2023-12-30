@@ -1,0 +1,29 @@
+@page "/components/uploadpost"
+@using Infrastructure.Models
+@using UniqueIdService = Core.Generators.UniqueIdService
+<br/>
+uploadFile.id
+<br/>
+<br/>
+<br/>
+uploadFile.path
+
+@code {
+    [Parameter]
+    public IFormFile file { get; set; } 
+    [Parameter]
+    public LinkPayload payload { get; set; } 
+    private UploadFile uploadFile { get; set; }
+    
+    protected override async Task OnInitializedAsync()
+    { 
+    // Simulate asynchronous loading to demonstrate streaming rendering
+        await Task.Delay(500);
+        uploadFile = new UploadFile()
+        {
+            id = UniqueIdService.Generator(),
+            name = file.Name,
+            path = file.FileName
+        }; 
+    }
+}
