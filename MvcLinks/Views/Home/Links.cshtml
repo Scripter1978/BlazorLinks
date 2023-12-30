@@ -1,0 +1,18 @@
+
+@{
+    ViewBag.Title = "title"; 
+}
+
+<button hx-get ="@Url.Action("AddLink")" hx-target="#LinkList" hx-swap="beforeend">Add New Url</button>
+
+
+
+<div id="response-body">
+</div>
+
+<ul id="LinkList">
+    
+</ul>
+
+<div id="response-form">
+</div>
