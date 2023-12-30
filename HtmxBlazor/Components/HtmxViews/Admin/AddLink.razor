@@ -1,11 +1,14 @@
 @page "/components/HtmxViews/Admin/addlink"
-
+@inject IPublicService PublicService
 @layout EmptyLayout
 @using Core.Entities
 @using Core.Generators
 @using HtmxBlazor.Components.Layout
+@using Infrastructure.Services.Public
 
-<li data-li-id="@payload.Id">
+@if (payload is not null)
+{
+    <li data-li-id="@payload.Id">
     <div class="card" style="display:table; padding: .1rem; border-radius:1rem;">
         <div class="" style="display: table-row-group; padding: .1rem; border-radius: 1rem;">
             <div class="" style="display: table-row;">
@@ -93,6 +96,8 @@
         </div> 
     </div> 
 </li>
+}
+
 
 
 
@@ -104,10 +109,10 @@
     protected override async Task OnInitializedAsync()
     { 
         // Simulate asynchronous loading to demonstrate streaming rendering
-        await Task.Delay(500);
+        var bio = await PublicService.GetBio("c19121b4-ccdd-467b-9290-edae16cf49f4");
         payload = new Bio()
         {
-            Id = UniqueIdService.Generator(),
+            Id = bio.Id,
             Url = "",
             Title = ""
         }; 
